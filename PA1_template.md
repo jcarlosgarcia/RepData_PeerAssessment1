@@ -32,6 +32,7 @@ medianSteps <- median(stepsPerDay$steps, na.rm = TRUE)
 ```
 
 Mean of the total number of steps taken pery day: **10766.19**
+
 Median of the total number of steps taken pery day: **10765**
 
 ## What is the average daily activity pattern?
@@ -92,8 +93,11 @@ medianSteps2 <- median(stepsPerDay$steps, na.rm = TRUE)
 
 ### Do these values differ from the estimates from the first part of the assignment?
 Original mean: **10766.19**
+
 Mean after imputing missing data: **10765.64**
+
 Original median: **10765**
+
 Median after imputing missing data: **10762**
 
 ### What is the impact of imputing missing data on the estimates of the total daily number of steps?
