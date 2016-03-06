@@ -117,11 +117,20 @@ $(document).ready(function () {
 <p>Load the dataset specifying the class for the columns</p>
 <pre class="r"><code>activityData &lt;- read.csv(&quot;activity.csv&quot;, header = TRUE, colClasses = c(&quot;integer&quot;, &quot;Date&quot;, &quot;integer&quot;))</code></pre>
 </div>
-<div id="what-is-mean-total-number-of-steps-taken-per-day" class="section level2">
-<h2>What is mean total number of steps taken per day?</h2>
+<div id="what-is-the-mean-total-number-of-steps-taken-per-day" class="section level2">
+<h2>What is the mean total number of steps taken per day?</h2>
 <div id="calculate-the-total-number-of-steps-taken-per-day" class="section level3">
 <h3>Calculate the total number of steps taken per day</h3>
 <pre class="r"><code>stepsPerDay &lt;- aggregate(steps ~ date, activityData, sum)</code></pre>
+<p>This is a small subset of the result</p>
+<pre class="r"><code>head(stepsPerDay)</code></pre>
+<pre><code>##         date steps
+## 1 2012-10-02   126
+## 2 2012-10-03 11352
+## 3 2012-10-04 12116
+## 4 2012-10-05 13294
+## 5 2012-10-06 15420
+## 6 2012-10-07 11015</code></pre>
 </div>
 <div id="make-a-histogram-of-the-total-number-of-steps-taken-each-day" class="section level3">
 <h3>Make a histogram of the total number of steps taken each day</h3>
@@ -163,7 +172,9 @@ maxInterval &lt;- avgStepsPerInterval[maxAvgSteps,]$interval</code></pre>
 </div>
 <div id="devise-a-strategy-for-filling-in-all-of-the-missing-values-in-the-dataset" class="section level3">
 <h3>Devise a strategy for filling in all of the missing values in the dataset</h3>
-<p>Use the mean for that 5-minute interval rounded to the nearest integer newData is a dataset equal to the original dataset but with the missing values filled in</p>
+<p>Use the mean for the corresponding 5-minute interval rounded to the nearest integer</p>
+<p>To do that the previous <strong>avgStepsPerInterval</strong> data frame is used, which contains the average number of steps taken per interval, averaged across all days</p>
+<p><strong>newData</strong> is a dataset equal to the original dataset but with the missing values filled in</p>
 <pre class="r"><code>newData &lt;- activityData
 naIndex &lt;- which(is.na(newData))
 for (i in naIndex) {
@@ -178,16 +189,13 @@ hist(stepsPerDay$steps, main = &quot;Histogram of Steps per Day&quot;, xlab = &q
 <pre class="r"><code>meanSteps2 &lt;- mean(stepsPerDay$steps, na.rm = TRUE)
 medianSteps2 &lt;- median(stepsPerDay$steps, na.rm = TRUE)</code></pre>
 </div>
-<div id="do-these-values-differ-from-the-estimates-from-the-first-part-of-the-assignment" class="section level3">
-<h3>Do these values differ from the estimates from the first part of the assignment?</h3>
+<div id="do-these-values-differ-from-the-estimates-from-the-first-part-of-the-assignment-what-is-the-impact-of-imputing-missing-data-on-the-estimates-of-the-total-daily-number-of-steps" class="section level3">
+<h3>Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?</h3>
+<p>The mean and median differ from the previous ones. The impact of imputing missing values is that both the mean and the median slightly decrease</p>
 <p>Original mean: <strong>10766.19</strong></p>
 <p>Mean after imputing missing data: <strong>10765.64</strong></p>
 <p>Original median: <strong>10765</strong></p>
 <p>Median after imputing missing data: <strong>10762</strong></p>
-</div>
-<div id="what-is-the-impact-of-imputing-missing-data-on-the-estimates-of-the-total-daily-number-of-steps" class="section level3">
-<h3>What is the impact of imputing missing data on the estimates of the total daily number of steps?</h3>
-<p>Both the mean and the median slightly decrease</p>
 </div>
 </div>
 <div id="are-there-differences-in-activity-patterns-between-weekdays-and-weekends" class="section level2">
