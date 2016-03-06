@@ -111,7 +111,7 @@ medianSteps2 <- median(stepsPerDay$steps, na.rm = TRUE)
 ```
 
 ### Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
-The mean and median differ from the previous ones. The impact of imputing missing values is that both the mean and the median slightly decrease
+The mean and median differ from the previous ones. The impact of imputing missing values is that **both the mean and the median slightly decrease**
 
 Original mean: **10766.19**
 
